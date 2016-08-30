@@ -2,7 +2,7 @@
   "name": "react-random-word",
   "version": "0.0.1",
   "description": "Randomized effected word",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "mkdir -p dist && babel src/random-word.js -o dist/index.js",
