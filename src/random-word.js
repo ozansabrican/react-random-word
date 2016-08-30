@@ -2,7 +2,7 @@ import React from 'react';
 
 let animation = null;
 
-class RandomWord extends React.Component {
+export default class RandomWord extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
