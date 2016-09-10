@@ -18,8 +18,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var animation = null;
-
 var RandomWord = function (_React$Component) {
     _inherits(RandomWord, _React$Component);
 
@@ -49,6 +47,16 @@ var RandomWord = function (_React$Component) {
     }
 
     _createClass(RandomWord, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.animation = window.setTimeout(this.animate, this.props.speed);
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            window.clearTimeout(this.animation);
+        }
+    }, {
         key: 'randomSequenceFor',
         value: function randomSequenceFor(letter) {
             var _this2 = this;
@@ -73,16 +81,6 @@ var RandomWord = function (_React$Component) {
             return this.props.letters[position];
         }
     }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.animation = window.setTimeout(this.animate, this.props.speed);
-        }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            window.clearTimeout(this.animation);
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _this3 = this;
@@ -103,6 +101,13 @@ var RandomWord = function (_React$Component) {
 
 exports.default = RandomWord;
 
+
+RandomWord.propTypes = {
+    speed: _react2.default.PropTypes.number,
+    rounds: _react2.default.PropTypes.number,
+    letters: _react2.default.PropTypes.string,
+    word: _react2.default.PropTypes.string
+};
 
 RandomWord.defaultProps = {
     speed: 150,
