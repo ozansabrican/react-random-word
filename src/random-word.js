@@ -1,7 +1,5 @@
 import React from 'react';
 
-let animation = null;
-
 export default class RandomWord extends React.Component {
     constructor(props) {
         super(props);
@@ -10,6 +8,14 @@ export default class RandomWord extends React.Component {
             letters: this.props.word.split('')
                 .map((char, i) => this.randomSequenceFor(this.props.word[i])),
         };
+    }
+
+    componentDidMount() {
+        this.animation = window.setTimeout(this.animate, this.props.speed);
+    }
+
+    componentWillUnmount() {
+        window.clearTimeout(this.animation);
     }
 
     randomSequenceFor(letter) {
@@ -45,19 +51,12 @@ export default class RandomWord extends React.Component {
         window.setTimeout(this.animate, this.props.speed);
     };
 
-    componentDidMount() {
-        this.animation = window.setTimeout(this.animate, this.props.speed);
-    }
-
-    componentWillUnmount() {
-        window.clearTimeout(this.animation);
-    }
-
     render() {
         return (
             <span>
-                {this.state.letters.map(letters => {
-                    const index = Math.min(this.state.round, letters.length -1);
+                {this.state.letters.map((letters) => {
+                    const index =
+                      Math.min(this.state.round, letters.length - 1);
                     return letters[index];
                 })}
             </span>
@@ -65,8 +64,16 @@ export default class RandomWord extends React.Component {
     }
 }
 
+RandomWord.propTypes = {
+    speed: React.PropTypes.number,
+    rounds: React.PropTypes.number,
+    letters: React.PropTypes.string,
+    word: React.PropTypes.string,
+};
+
 RandomWord.defaultProps = {
     speed: 150,
     rounds: 20,
     letters: 'abcdef0123456789',
 };
+
