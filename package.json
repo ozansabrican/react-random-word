@@ -1,6 +1,6 @@
 {
   "name": "react-random-word",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Randomized effected word",
   "main": "dist/index.js",
   "scripts": {
